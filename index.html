@@ -11,23 +11,22 @@
   <meta property="og:title" content="Бесчастнов Дмитрий Валерьевич — травматолог-ортопед">
   <meta property="og:description" content="Материалы о травмах, заболеваниях опорно-двигательного аппарата и направлениях приёма.">
   <script>
-    // Устанавливаем сохранённую или системную тему до отрисовки страницы.
+    // До отрисовки применяем сохранённый выбор; для первого посещения используем светлую тему.
     (() => {
       let saved = null;
-      try { saved = localStorage.getItem('travmaviz-theme'); } catch {}
-      const theme = ['light', 'dark'].includes(saved) ? saved :
-        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      try { saved = localStorage.getItem('travmaviz-theme-v2'); } catch {}
+      const theme = ['light', 'dark'].includes(saved) ? saved : 'light';
       document.documentElement.classList.remove('light', 'dark');
       document.documentElement.classList.add(theme);
       document.documentElement.dataset.theme = theme;
       document.documentElement.style.colorScheme = theme;
     })();
   </script>
-  <link rel="stylesheet" href="assets/css/theme.css?v=site-tabs-1">
+  <link rel="stylesheet" href="assets/css/theme.css?v=site-tabs-2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-  <link rel="icon" type="image/svg+xml" href="assets/img/dzm-heart.svg?v=ecg-1">
+  <link rel="icon" type="image/svg+xml" href="assets/img/dzm-heart.svg?v=site-assets-2">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -74,14 +73,13 @@
     .service-card p,.service-card span { margin-top:.3rem; color:var(--color-text-muted); font-size:.82rem; line-height:1.5; }
     .service-card a { color:var(--color-primary-600); font-size:.82rem; font-weight:800; text-decoration:none; }
     .service-card a:hover { text-decoration:underline; }
-    .document-card { display:grid; grid-template-columns:2.5rem minmax(0,1fr) auto; align-items:center; gap:.9rem; width:100%; border:1px solid var(--color-border); border-radius:1rem; background:var(--color-bg); padding:1rem; text-align:left; transition:background-color .18s,border-color .18s; }
-    .document-card:hover { border-color:var(--color-primary); background:var(--color-surface); }
+    .document-card { display:grid; grid-template-columns:2.5rem minmax(0,1fr); align-items:center; gap:.9rem; width:100%; border:1px solid var(--color-border); border-radius:1rem; background:var(--color-bg); padding:1rem; text-align:left; }
     .document-card strong { display:block; font-size:.9rem; }
     .document-card small { display:block; margin-top:.25rem; color:var(--color-text-muted); font-size:.75rem; }
-    @media(max-width:700px) { .service-card { grid-template-columns:minmax(0,1fr); gap:.5rem; } .service-card span { margin:0; } .document-card { grid-template-columns:2.5rem minmax(0,1fr); } .document-open { grid-column:2; padding-top:0; } }
+    @media(max-width:700px) { .service-card { grid-template-columns:minmax(0,1fr); gap:.5rem; } .service-card span { margin:0; } }
     @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation:none; transition:none; } }
   </style>
-  <script src="assets/js/theme.js?v=site-tabs-1" defer></script>
+  <script src="assets/js/theme.js?v=site-tabs-2" defer></script>
   <script src="assets/js/site.js?v=site-tabs-3" defer></script>
 </head>
 <body class="min-h-screen bg-bg font-sans text-text antialiased">
@@ -123,7 +121,7 @@
     </div>
     <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:flex-nowrap lg:px-8">
       <a data-route="doctor" href="#/doctor" aria-label="На главную: Бесчастнов Дмитрий Валерьевич" class="flex min-w-0 items-center gap-4 rounded-xl">
-        <img src="assets/img/dzm-heart.svg?v=ecg-1" width="58" height="58" alt="Сердце Московской медицины с линией ЭКГ" class="h-12 w-12 shrink-0 sm:h-14 sm:w-14">
+        <img src="assets/img/dzm-heart.svg?v=site-assets-2" width="58" height="58" alt="Сердце Московской медицины с линией ЭКГ" class="h-12 w-12 shrink-0 sm:h-14 sm:w-14">
         <span class="min-w-0"><span class="block text-lg font-extrabold leading-tight sm:text-xl">Бесчастнов Дмитрий Валерьевич</span><span class="mt-1 block text-sm text-text-muted">Травматолог-ортопед · Москва</span></span>
       </a>
       <div class="flex items-center gap-3 sm:gap-5">
@@ -135,7 +133,7 @@
       </div>
     </div>
     <div class="border-t border-border bg-bg">
-      <nav aria-label="Направления травматологии" class="mx-auto flex max-w-7xl items-center gap-1 overflow-x-auto px-4 py-2 sm:px-6 lg:px-8">
+      <nav aria-label="Направления травматологии" class="mx-auto flex max-w-7xl flex-wrap items-center gap-1 px-4 py-2 sm:px-6 lg:px-8">
         <a data-route="conditions" href="#/conditions" class="topic-tab">Заболевания и травмы</a>
         <a data-route="joint-pain" href="#/joint-pain" class="topic-tab">Боли в суставах</a>
         <a data-route="sports-injury" href="#/sports-injury" class="topic-tab">Спортивные травмы</a>
@@ -179,7 +177,7 @@
         <section id="view-doctor" data-page="doctor" data-title="Бесчастнов Дмитрий Валерьевич" data-kicker="Травматолог-ортопед" data-description="Помощь при травмах, боли в суставах и ограничении движения." aria-labelledby="page-title">
           <div class="grid gap-7 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
             <div class="overflow-hidden rounded-2xl border border-border bg-surface-2">
-              <img src="assets/img/doctor.jpg" alt="Бесчастнов Дмитрий Валерьевич в кабинете" class="block h-[340px] w-full object-cover object-[58%_24%] sm:h-[480px]">
+              <img src="assets/img/doctor.jpg?v=site-assets-2" alt="Бесчастнов Дмитрий Валерьевич в кабинете" class="block h-[340px] w-full object-cover object-[58%_24%] sm:h-[480px]">
               <div class="bg-surface p-4"><p class="text-sm font-bold">Консультация травматолога-ортопеда</p><p class="mt-1 text-sm text-text-muted">Москва · Сормовская улица, 9</p></div>
             </div>
             <div class="self-center">
@@ -311,18 +309,18 @@
           </div>
           <p class="mt-5 text-xs leading-relaxed text-text-muted">Перечень не является обещанием оказания конкретной услуги. Решение принимается после оценки показаний.</p>
         </section>
-        <section id="view-certificates" data-page="certificates" data-title="Образование и сертификаты" data-kicker="Профессиональные документы" data-description="Документы открываются во встроенном окне сайта как изображения страниц." aria-labelledby="page-title" hidden>
-          <div class="rounded-2xl border border-border bg-surface p-5 sm:p-7"><h2 class="text-xl font-extrabold">Образование и повышение квалификации</h2><p class="mt-2 leading-relaxed text-text-muted">Выберите документ для просмотра. Оригиналы PDF не открываются в новой вкладке и не предлагаются к скачиванию.</p></div>
+        <section id="view-certificates" data-page="certificates" data-title="Образование и сертификаты" data-kicker="Профессиональные документы" data-description="Образование и направления повышения квалификации врача." aria-labelledby="page-title" hidden>
+          <div class="rounded-2xl border border-border bg-surface p-5 sm:p-7"><h2 class="text-xl font-extrabold">Образование и повышение квалификации</h2><p class="mt-2 leading-relaxed text-text-muted">Список образования и направлений повышения квалификации. Копии документов не размещены на сайте.</p></div>
           <div class="mt-5 grid gap-3 sm:grid-cols-2">
-            <button type="button" data-document-pages="assets/docs/previews/education-points-1-1.webp" data-document-title="Баллы — документ 1" class="document-card"><span class="document-badge">01</span><span><strong>Баллы</strong><small>Документ 1 · повышение квалификации</small></span><span class="document-open">Открыть →</span></button>
-            <button type="button" data-document-pages="assets/docs/previews/education-points-2-1.webp" data-document-title="Баллы — документ 2" class="document-card"><span class="document-badge">02</span><span><strong>Баллы</strong><small>Документ 2 · повышение квалификации</small></span><span class="document-open">Открыть →</span></button>
-            <button type="button" data-document-pages="assets/docs/previews/education-points-3-1.webp" data-document-title="Баллы — документ 3" class="document-card"><span class="document-badge">03</span><span><strong>Баллы</strong><small>Документ 3 · повышение квалификации</small></span><span class="document-open">Открыть →</span></button>
-            <button type="button" data-document-pages="assets/docs/previews/diploma-lechebnoe-delo-1.webp" data-document-title="Диплом · Лечебное дело" class="document-card"><span class="document-badge">04</span><span><strong>Диплом</strong><small>Лечебное дело</small></span><span class="document-open">Открыть →</span></button>
-            <button type="button" data-document-pages="assets/docs/previews/diploma-organizaciya-1.webp" data-document-title="Диплом · Организация" class="document-card"><span class="document-badge">05</span><span><strong>Диплом</strong><small>Организация здравоохранения</small></span><span class="document-open">Открыть →</span></button>
-            <button type="button" data-document-pages="assets/docs/previews/diploma-rentgenologiya-1.webp" data-document-title="Диплом · Рентгенология" class="document-card"><span class="document-badge">06</span><span><strong>Диплом</strong><small>Рентгенология</small></span><span class="document-open">Открыть →</span></button>
-            <button type="button" data-document-pages="assets/docs/previews/ordinatura-1.webp" data-document-title="Ординатура" class="document-card"><span class="document-badge">07</span><span><strong>Ординатура</strong><small>Профессиональная подготовка</small></span><span class="document-open">Открыть →</span></button>
-            <button type="button" data-document-pages="assets/docs/previews/certificate-geriatriya-1.webp" data-document-title="Свидетельство · Гериатрия" class="document-card"><span class="document-badge">08</span><span><strong>Свидетельство</strong><small>Гериатрия</small></span><span class="document-open">Открыть →</span></button>
-            <button type="button" data-document-pages="assets/docs/previews/udostoverenie-travmatologiya-1.webp" data-document-title="Удостоверение · Травматология" class="document-card"><span class="document-badge">09</span><span><strong>Удостоверение</strong><small>Травматология и ортопедия</small></span><span class="document-open">Открыть →</span></button>
+            <div class="document-card"><span class="document-badge" aria-hidden="true">01</span><span><strong>Баллы</strong><small>Повышение квалификации · документ 1</small></span></div>
+            <div class="document-card"><span class="document-badge" aria-hidden="true">02</span><span><strong>Баллы</strong><small>Повышение квалификации · документ 2</small></span></div>
+            <div class="document-card"><span class="document-badge" aria-hidden="true">03</span><span><strong>Баллы</strong><small>Повышение квалификации · документ 3</small></span></div>
+            <div class="document-card"><span class="document-badge" aria-hidden="true">04</span><span><strong>Диплом</strong><small>Лечебное дело</small></span></div>
+            <div class="document-card"><span class="document-badge" aria-hidden="true">05</span><span><strong>Диплом</strong><small>Организация здравоохранения</small></span></div>
+            <div class="document-card"><span class="document-badge" aria-hidden="true">06</span><span><strong>Диплом</strong><small>Рентгенология</small></span></div>
+            <div class="document-card"><span class="document-badge" aria-hidden="true">07</span><span><strong>Ординатура</strong><small>Профессиональная подготовка</small></span></div>
+            <div class="document-card"><span class="document-badge" aria-hidden="true">08</span><span><strong>Свидетельство</strong><small>Гериатрия</small></span></div>
+            <div class="document-card"><span class="document-badge" aria-hidden="true">09</span><span><strong>Удостоверение</strong><small>Травматология и ортопедия</small></span></div>
           </div>
         </section>
 
@@ -402,16 +400,9 @@
     <!-- ВЫДУМАННЫЕ ДАННЫЕ: телефон, e-mail, график, ИНН и ОГРН демонстрационные; замените официальными данными организации. -->
     <div class="mx-auto grid max-w-7xl gap-7 px-4 py-8 text-sm sm:px-6 md:grid-cols-2 lg:px-8">
       <div><p class="font-extrabold">Бесчастнов Дмитрий Валерьевич</p><p class="mt-1 text-text-muted">Травматолог-ортопед</p><p class="mt-3 text-text-muted">ГБУЗ «Диагностический центр №3 ДЗМ» · Москва, ул. Сормовская, 9</p></div>
-      <div class="md:text-right"><p><a href="tel:+70000000000" class="font-bold hover:text-primary-600">+7 (000) 000-00-00</a> · <a href="mailto:doctor@example.com" class="text-text-muted hover:text-primary-600">doctor@example.com</a></p><p class="mt-2 text-xs leading-relaxed text-text-muted">ИНН 0000000000 · ОГРН 0000000000000 · Демонстрационные реквизиты</p><p class="mt-2 text-xs leading-relaxed text-text-muted">© <span id="year">2026</span> Информация на сайте не является публичной офертой и не заменяет консультацию врача.</p><p class="mt-3"><a href="/admin.html" class="text-xs font-bold text-primary-600 hover:underline">Управление статьями</a></p></div>
+      <div class="md:text-right"><p><a href="tel:+70000000000" class="font-bold hover:text-primary-600">+7 (000) 000-00-00</a> · <a href="mailto:doctor@example.com" class="text-text-muted hover:text-primary-600">doctor@example.com</a></p><p class="mt-2 text-xs leading-relaxed text-text-muted">ИНН 0000000000 · ОГРН 0000000000000 · Демонстрационные реквизиты</p><p class="mt-2 text-xs leading-relaxed text-text-muted">© <span id="year">2026</span> Информация на сайте не является публичной офертой и не заменяет консультацию врача.</p></div>
     </div>
   </footer>
 
-  <!-- Просмотр локальных изображений страниц документов; оригинальные PDF не связаны с открытием в новой вкладке и скачиванием. -->
-  <dialog id="document-modal" aria-labelledby="document-modal-title" aria-describedby="document-modal-help" class="fixed inset-0 m-0 h-full max-h-full w-full max-w-full bg-bg p-4 text-text backdrop:bg-overlay sm:inset-6 sm:m-auto sm:h-[calc(100dvh_-_3rem)] sm:max-h-[900px] sm:w-[calc(100vw_-_3rem)] sm:max-w-5xl sm:rounded-3xl sm:p-6">
-    <div class="flex h-full min-h-0 flex-col gap-4">
-      <div class="flex shrink-0 items-start justify-between gap-4"><div><p class="text-xs font-extrabold uppercase tracking-widest text-primary-600">Образование и повышение квалификации</p><h2 id="document-modal-title" class="mt-2 text-xl font-extrabold sm:text-2xl">Документ</h2><p id="document-modal-help" class="mt-1 text-sm text-text-muted">Просмотр изображения страниц</p></div><button type="button" data-modal-close aria-label="Закрыть просмотр документа" title="Закрыть" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-border bg-surface text-lg transition hover:bg-surface-2">×</button></div>
-      <div id="document-viewer" role="region" aria-label="Страницы документа" tabindex="0" class="min-h-0 w-full flex-1 overflow-auto overscroll-contain rounded-xl border border-border bg-surface-2 p-2 sm:p-4"></div>
-    </div>
-  </dialog>
 </body>
 </html>
