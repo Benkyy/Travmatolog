@@ -220,19 +220,26 @@
       pageImages.forEach((src, index) => {
         const figure = document.createElement('figure');
         figure.className = 'mb-4 last:mb-0';
-        const status = document.createElement('p');
-        status.className = 'p-4 text-sm text-text-muted';
+        const status = document.createElement('div');
+        status.className = 'document-skeleton';
         status.setAttribute('role', 'status');
         status.textContent = 'Загрузка страницы ' + (index + 1) + '…';
         const image = document.createElement('img');
-        image.className = 'mx-auto block h-auto w-full';
+        image.className = 'document-page-image';
         image.alt = trigger.dataset.documentTitle + ' — страница ' + (index + 1) + ' из ' + pageImages.length;
         image.decoding = 'async';
-        image.addEventListener('load', () => status.remove(), { once: true });
-        image.addEventListener('error', () => { status.textContent = 'Не удалось загрузить изображение страницы.'; }, { once: true });
-        image.src = src;
         figure.append(status, image);
         viewer.append(figure);
+        image.addEventListener('load', () => {
+          status.remove();
+          image.classList.add('is-loaded');
+        }, { once: true });
+        image.addEventListener('error', () => {
+          status.classList.add('document-skeleton--error');
+          status.textContent = 'Не удалось загрузить изображение страницы.';
+          image.remove();
+        }, { once: true });
+        image.src = src;
       });
       modal.showModal();
       viewer.scrollTop = 0;
