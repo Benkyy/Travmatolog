@@ -45,7 +45,7 @@
     };
   </script>
   <style>
-    html { scroll-behavior:smooth; }
+    html { scroll-behavior:smooth; scroll-padding-top:1rem; }
     :focus-visible { outline:3px solid var(--color-primary-600); outline-offset:3px; }
     dialog::backdrop { background:var(--color-overlay); backdrop-filter:blur(5px); }
     .top-tab,.topic-tab,.side-link,.menu-link { display:block; border-radius:.65rem; padding:.6rem .8rem; color:var(--color-text-muted); font-size:.875rem; font-weight:700; white-space:nowrap; transition:background-color .18s,color .18s; }
@@ -58,7 +58,7 @@
     .topic-icon,.document-badge { display:flex; align-items:center; justify-content:center; width:2.5rem; height:2.5rem; border-radius:.8rem; background:var(--color-surface-2); color:var(--color-primary-600); font-size:.75rem; font-weight:800; }
     .topic-more,.document-open { margin-top:auto; padding-top:1rem; color:var(--color-primary-600); font-size:.8rem; font-weight:800; }
     .article-label { color:var(--color-primary-600); font-size:.7rem; font-weight:800; letter-spacing:.12em; }
-    .topic-article { border:1px solid var(--color-border); border-radius:1rem; background:var(--color-bg); padding:1.25rem; }
+    .topic-article { border:1px solid var(--color-border); border-radius:1rem; background:var(--color-bg); padding:1.25rem; transition:border-color .2s,background-color .2s,box-shadow .2s; }
     .topic-article h2 { margin:1.7rem 0 .55rem; font-size:1.15rem; font-weight:800; }
     .topic-article h2:first-child { margin-top:0; }
     .topic-article p,.topic-article li { color:var(--color-text-muted); font-size:.94rem; line-height:1.75; }
@@ -66,8 +66,8 @@
     .topic-note { margin-top:1.5rem; border-left:3px solid var(--color-primary); border-radius:.4rem; background:var(--color-surface-2); padding:1rem; color:var(--color-text); font-size:.9rem; line-height:1.65; }
     .inline-action { display:inline-flex; align-items:center; gap:.5rem; margin-top:1.25rem; border-radius:.7rem; background:var(--color-accent); padding:.8rem 1rem; color:var(--color-on-accent); font-size:.9rem; font-weight:800; text-decoration:none; }
     .inline-action:hover { background:var(--color-accent-hover); }
-    .service-card { display:grid; grid-template-columns:minmax(0,1fr) 10rem 10rem; align-items:center; gap:1rem; border:1px solid var(--color-border); border-radius:1rem; background:var(--color-bg); padding:1rem 1.2rem; transition:background-color .18s; }
-    .service-card:hover { background:var(--color-surface); }
+    .service-card { display:grid; grid-template-columns:minmax(0,1fr) 10rem 10rem; align-items:center; gap:1rem; border:1px solid var(--color-border); border-radius:1rem; background:var(--color-bg); padding:1rem 1.2rem; transition:background-color .2s,border-color .2s,box-shadow .2s,transform .2s; }
+    .service-card:hover { border-color:var(--color-primary); background:var(--color-surface); }
     .service-card h2 { font-size:.98rem; font-weight:800; }
     .service-card p,.service-card span { margin-top:.3rem; color:var(--color-text-muted); font-size:.82rem; line-height:1.5; }
     .service-card a { color:var(--color-primary-600); font-size:.82rem; font-weight:800; text-decoration:none; }
@@ -83,14 +83,39 @@
     .document-skeleton--error { background:var(--color-surface-2); animation:none; }
     .document-page-image { display:block; width:100%; height:auto; border-radius:.5rem; opacity:0; transition:opacity .24s ease-out; }
     .document-page-image.is-loaded { opacity:1; }
+    .topic-navigation { scrollbar-width:none; overscroll-behavior-inline:contain; scroll-snap-type:x proximity; }
+    .topic-navigation::-webkit-scrollbar { display:none; }
+    .topic-navigation > a { flex:0 0 auto; scroll-snap-align:start; }
+    .reveal-on-scroll { opacity:0; transform:translateY(.85rem); transition:opacity .44s ease var(--reveal-delay,0ms),transform .44s cubic-bezier(.2,.75,.25,1) var(--reveal-delay,0ms); }
+    .reveal-on-scroll.is-visible { opacity:1; transform:translateY(0); }
     @keyframes document-modal-enter { from { opacity:0; transform:translateY(.75rem) scale(.99); } to { opacity:1; transform:translateY(0) scale(1); } }
     @keyframes document-backdrop-enter { from { opacity:0; } to { opacity:1; } }
     @keyframes document-skeleton-shimmer { from { background-position:100% 0; } to { background-position:-100% 0; } }
+    @media(hover:hover) and (pointer:fine) {
+      .top-tab:hover,.topic-tab:hover,.side-link:hover,.menu-link:hover { transform:translateY(-1px); }
+      .topic-card:hover,.article-card:hover,.service-card:hover,.document-card:hover,.topic-article:hover { box-shadow:0 12px 28px var(--color-shadow); }
+      .inline-action:hover { transform:translateY(-1px); box-shadow:0 8px 20px var(--color-shadow); }
+    }
+    .topic-card:active,.article-card:active,.service-card:active,.document-card:active,.inline-action:active { transform:scale(.99); }
+    @media(max-width:700px) {
+      .topbar-layout { gap:.5rem; }
+      .site-search-control { width:auto; min-width:0; max-width:24rem; flex:1 1 0%; margin-left:auto; }
+      .site-search-control input { min-width:0; }
+      .mobile-menu-summary { white-space:nowrap; padding-inline:.65rem; }
+    }
+    @media(max-width:430px) {
+      .doctor-header-row { flex-wrap:nowrap; gap:.5rem; }
+      .doctor-brand { width:calc(100% - 3.25rem); min-width:0; flex:1 1 0%; gap:.5rem; }
+      .doctor-brand > img { width:2.5rem; height:2.5rem; }
+      .doctor-header-actions { flex:0 0 auto; }
+      .doctor-name { font-size:.9rem; }
+    }
     @media(max-width:700px) { .service-card { grid-template-columns:minmax(0,1fr); gap:.5rem; } .service-card span { margin:0; } .document-card { grid-template-columns:2.5rem minmax(0,1fr); } .document-open { grid-column:2; padding-top:0; } }
+    @media(max-width:360px) { .document-card { gap:.65rem; padding:.8rem; } .document-badge { width:2.25rem; height:2.25rem; } }
     @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation:none; transition:none; } }
   </style>
   <script src="assets/js/theme.js?v=site-tabs-2" defer></script>
-  <script src="assets/js/site.js?v=site-tabs-5" defer></script>
+  <script src="assets/js/site.js?v=site-tabs-6" defer></script>
 </head>
 <body class="min-h-screen bg-bg font-sans text-text antialiased">
   <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-xl focus:bg-bg focus:p-4">Перейти к содержимому</a>
@@ -98,7 +123,7 @@
   <!-- ===== СЕКЦИЯ: HEADER ===== -->
   <header id="site-header" class="sticky top-0 z-40 border-b border-border bg-header-bg shadow-soft backdrop-blur-xl">
     <div class="border-b border-border bg-surface-2">
-      <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+      <div class="topbar-layout mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <nav aria-label="Основные разделы сайта" class="hidden min-w-0 items-center gap-1 overflow-x-auto py-2 lg:flex">
           <a data-route="doctor" href="#/doctor" class="top-tab">О враче</a>
           <a data-route="certificates" href="#/certificates" class="top-tab">Сертификаты</a>
@@ -106,7 +131,7 @@
           <a data-route="partners" href="#/partners" class="top-tab">Партнёры</a>
           <a data-route="contacts" href="#/contacts" class="top-tab">Контакты</a>
         </nav>
-        <div class="relative ml-auto flex w-full max-w-sm items-center gap-2 py-2 lg:ml-0">
+        <div class="site-search-control relative ml-auto flex w-full max-w-sm items-center gap-2 py-2 lg:ml-0">
           <label class="sr-only" for="site-search">Найти тему на сайте</label>
           <input id="site-search" type="search" autocomplete="off" placeholder="Поиск по травмам и темам" class="min-h-9 w-full rounded-lg border border-border bg-bg px-3 text-sm placeholder:text-text-muted focus:border-primary-600 focus:outline-none">
           <button id="search-button" type="button" aria-label="Показать результаты поиска" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border bg-bg text-primary-600 transition hover:bg-surface">
@@ -115,9 +140,9 @@
           <div id="search-results" role="listbox" aria-label="Результаты поиска" class="absolute right-0 top-full z-50 mt-1 max-h-80 w-full overflow-auto rounded-xl border border-border bg-bg p-2 shadow-soft" hidden></div>
         </div>
         <details id="mobile-menu" class="relative shrink-0 lg:hidden">
-          <summary class="flex min-h-10 cursor-pointer list-none items-center gap-2 rounded-lg border border-border bg-bg px-3 text-sm font-semibold">
+          <summary class="mobile-menu-summary flex min-h-10 cursor-pointer list-none items-center gap-2 rounded-lg border border-border bg-bg px-3 text-sm font-semibold">
             <svg class="h-5 w-5 text-primary-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-            Разделы
+            Меню
           </summary>
           <nav aria-label="Разделы сайта на мобильном" class="absolute right-0 top-full z-50 mt-2 grid min-w-56 gap-1 rounded-xl border border-border bg-bg p-2 shadow-soft">
             <a data-route="doctor" href="#/doctor" class="menu-link">О враче</a>
@@ -129,12 +154,12 @@
         </details>
       </div>
     </div>
-    <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:flex-nowrap lg:px-8">
-      <a data-route="doctor" href="#/doctor" aria-label="На главную: Бесчастнов Дмитрий Валерьевич" class="flex min-w-0 items-center gap-4 rounded-xl">
+    <div class="doctor-header-row mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:flex-nowrap lg:px-8">
+      <a data-route="doctor" href="#/doctor" aria-label="На главную: Бесчастнов Дмитрий Валерьевич" class="doctor-brand flex min-w-0 items-center gap-3 sm:gap-4 rounded-xl">
         <img src="assets/img/dzm-heart.svg?v=site-assets-2" width="58" height="58" alt="Сердце Московской медицины с линией ЭКГ" class="h-12 w-12 shrink-0 sm:h-14 sm:w-14">
-        <span class="min-w-0"><span class="block text-lg font-extrabold leading-tight sm:text-xl">Бесчастнов Дмитрий Валерьевич</span><span class="mt-1 block text-sm text-text-muted">Травматолог-ортопед · Москва</span></span>
+        <span class="min-w-0"><span class="doctor-name block text-base font-extrabold leading-tight sm:text-lg xl:text-xl">Бесчастнов Дмитрий Валерьевич</span><span class="mt-1 block text-xs text-text-muted sm:text-sm">Травматолог-ортопед · Москва</span></span>
       </a>
-      <div class="flex items-center gap-3 sm:gap-5">
+      <div class="doctor-header-actions flex items-center gap-3 sm:gap-5">
         <div class="hidden text-right sm:block"><span class="block text-[10px] font-bold uppercase tracking-widest text-text-muted">Телефон клиники</span><a href="tel:+74959191140" class="mt-1 inline-flex items-center gap-2 font-bold transition hover:text-primary-600"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 3 3 5-2 2a15 15 0 0 0 7 7l2-2 5 3-1 3C10 22 2 14 3 4Z"/></svg>+7 (495) 919-11-40</a></div><div class="hidden text-right xl:block"><span class="block text-[10px] font-bold uppercase tracking-widest text-text-muted">Адрес клиники</span><a data-route="contacts" href="#/contacts" class="mt-1 inline-flex font-semibold transition hover:text-primary-600">Москва, ул. Сормовская, 9</a></div>
         <button id="theme-toggle" type="button" aria-label="Переключить тему" aria-pressed="false" title="Переключить тему" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-border bg-bg transition hover:bg-surface">
           <svg class="h-5 w-5 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
@@ -143,7 +168,7 @@
       </div>
     </div>
     <div class="border-t border-border bg-bg">
-      <nav aria-label="Направления травматологии" class="mx-auto flex max-w-7xl flex-wrap items-center gap-1 px-4 py-2 sm:px-6 lg:px-8">
+      <nav aria-label="Направления травматологии" class="topic-navigation mx-auto flex max-w-7xl flex-nowrap items-center gap-1 overflow-x-auto px-4 py-2 sm:px-6 lg:px-8">
         <a data-route="conditions" href="#/conditions" class="topic-tab">Заболевания и травмы</a>
         <a data-route="joint-pain" href="#/joint-pain" class="topic-tab">Боли в суставах</a>
         <a data-route="sports-injury" href="#/sports-injury" class="topic-tab">Спортивные травмы</a>
