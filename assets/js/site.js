@@ -207,4 +207,42 @@
     if (!event.target.closest('#site-search') && !event.target.closest('#search-results') && !event.target.closest('#search-button')) searchResults.hidden = true;
   });
 
+  const modal = document.getElementById('document-modal');
+  const viewer = document.getElementById('document-viewer');
+  let lastTrigger = null;
+  document.querySelectorAll('[data-document-pages]').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      if (!modal || typeof modal.showModal !== 'function') return;
+      lastTrigger = trigger;
+      document.getElementById('document-modal-title').textContent = trigger.dataset.documentTitle;
+      viewer.replaceChildren();
+      const pageImages = trigger.dataset.documentPages.split('|');
+      pageImages.forEach((src, index) => {
+        const figure = document.createElement('figure');
+        figure.className = 'mb-4 last:mb-0';
+        const status = document.createElement('p');
+        status.className = 'p-4 text-sm text-text-muted';
+        status.setAttribute('role', 'status');
+        status.textContent = 'Загрузка страницы ' + (index + 1) + '…';
+        const image = document.createElement('img');
+        image.className = 'mx-auto block h-auto w-full';
+        image.alt = trigger.dataset.documentTitle + ' — страница ' + (index + 1) + ' из ' + pageImages.length;
+        image.decoding = 'async';
+        image.addEventListener('load', () => status.remove(), { once: true });
+        image.addEventListener('error', () => { status.textContent = 'Не удалось загрузить изображение страницы.'; }, { once: true });
+        image.src = src;
+        figure.append(status, image);
+        viewer.append(figure);
+      });
+      modal.showModal();
+      viewer.scrollTop = 0;
+      modal.querySelector('[data-modal-close]').focus();
+    });
+  });
+  document.querySelectorAll('[data-modal-close]').forEach((control) => control.addEventListener('click', () => modal.close()));
+  modal.addEventListener('click', (event) => { if (event.target === modal) modal.close(); });
+  modal.addEventListener('close', () => {
+    viewer.replaceChildren();
+    if (lastTrigger && lastTrigger.isConnected) lastTrigger.focus();
+  });
 })();

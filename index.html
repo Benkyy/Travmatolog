@@ -72,15 +72,16 @@
     .service-card p,.service-card span { margin-top:.3rem; color:var(--color-text-muted); font-size:.82rem; line-height:1.5; }
     .service-card a { color:var(--color-primary-600); font-size:.82rem; font-weight:800; text-decoration:none; }
     .service-card a:hover { text-decoration:underline; }
-    .document-card { display:grid; grid-template-columns:2.5rem minmax(0,1fr) auto; align-items:center; gap:.9rem; width:100%; border:1px solid var(--color-border); border-radius:1rem; background:var(--color-bg); padding:1rem; text-align:left; transition:background-color .18s,border-color .18s; }
-    .document-card:hover { border-color:var(--color-primary); background:var(--color-surface); }
+    .document-card { display:grid; grid-template-columns:2.5rem minmax(0,1fr) auto; align-items:center; gap:.9rem; width:100%; cursor:pointer; border:1px solid var(--color-border); border-radius:1rem; background:var(--color-bg); padding:1rem; text-align:left; transition:background-color .18s,border-color .18s,transform .18s; }
+    .document-card:hover { border-color:var(--color-primary); background:var(--color-surface); transform:translateY(-1px); }
+    .document-card:focus-visible { outline:3px solid var(--color-primary-600); outline-offset:3px; }
     .document-card strong { display:block; font-size:.9rem; }
     .document-card small { display:block; margin-top:.25rem; color:var(--color-text-muted); font-size:.75rem; }
     @media(max-width:700px) { .service-card { grid-template-columns:minmax(0,1fr); gap:.5rem; } .service-card span { margin:0; } .document-card { grid-template-columns:2.5rem minmax(0,1fr); } .document-open { grid-column:2; padding-top:0; } }
     @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation:none; transition:none; } }
   </style>
   <script src="assets/js/theme.js?v=site-tabs-2" defer></script>
-  <script src="assets/js/site.js?v=site-tabs-3" defer></script>
+  <script src="assets/js/site.js?v=site-tabs-4" defer></script>
 </head>
 <body class="min-h-screen bg-bg font-sans text-text antialiased">
   <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-xl focus:bg-bg focus:p-4">Перейти к содержимому</a>
@@ -312,9 +313,9 @@
         <section id="view-certificates" data-page="certificates" data-title="Образование и сертификаты" data-kicker="Профессиональные документы" data-description="Документы открываются во встроенном окне сайта как изображения страниц." aria-labelledby="page-title" hidden>
           <div class="rounded-2xl border border-border bg-surface p-5 sm:p-7"><h2 class="text-xl font-extrabold">Образование и повышение квалификации</h2><p class="mt-2 leading-relaxed text-text-muted">Нажмите на документ, чтобы просмотреть его страницы во встроенном окне.</p></div>
           <div class="mt-5 grid gap-3 sm:grid-cols-2">
-            <button type="button" data-document-pages="assets/docs/previews/education-points-1-1.webp" data-document-title="Баллы — документ 1" class="document-card"><span class="document-badge">01</span><span><strong>Баллы</strong><small>Документ 1 · повышение квалификации</small></span><span class="document-open">Открыть →</span></button>
-            <button type="button" data-document-pages="assets/docs/previews/education-points-2-1.webp" data-document-title="Баллы — документ 2" class="document-card"><span class="document-badge">02</span><span><strong>Баллы</strong><small>Документ 2 · повышение квалификации</small></span><span class="document-open">Открыть →</span></button>
-            <button type="button" data-document-pages="assets/docs/previews/education-points-3-1.webp" data-document-title="Баллы — документ 3" class="document-card"><span class="document-badge">03</span><span><strong>Баллы</strong><small>Документ 3 · повышение квалификации</small></span><span class="document-open">Открыть →</span></button>
+            <button type="button" data-document-pages="assets/docs/previews/education-points-1-1.webp" data-document-title="Сертификат — документ 1" class="document-card"><span class="document-badge">01</span><span><strong>Сертификат</strong><small>Документ 1 · повышение квалификации</small></span><span class="document-open">Открыть →</span></button>
+            <button type="button" data-document-pages="assets/docs/previews/education-points-2-1.webp" data-document-title="Сертификат — документ 2" class="document-card"><span class="document-badge">02</span><span><strong>Сертификат</strong><small>Документ 2 · повышение квалификации</small></span><span class="document-open">Открыть →</span></button>
+            <button type="button" data-document-pages="assets/docs/previews/education-points-3-1.webp" data-document-title="Сертификат — документ 3" class="document-card"><span class="document-badge">03</span><span><strong>Сертификат</strong><small>Документ 3 · повышение квалификации</small></span><span class="document-open">Открыть →</span></button>
             <button type="button" data-document-pages="assets/docs/previews/diploma-lechebnoe-delo-1.webp" data-document-title="Диплом · Лечебное дело" class="document-card"><span class="document-badge">04</span><span><strong>Диплом</strong><small>Лечебное дело</small></span><span class="document-open">Открыть →</span></button>
             <button type="button" data-document-pages="assets/docs/previews/diploma-organizaciya-1.webp" data-document-title="Диплом · Организация" class="document-card"><span class="document-badge">05</span><span><strong>Диплом</strong><small>Организация здравоохранения</small></span><span class="document-open">Открыть →</span></button>
             <button type="button" data-document-pages="assets/docs/previews/diploma-rentgenologiya-1.webp" data-document-title="Диплом · Рентгенология" class="document-card"><span class="document-badge">06</span><span><strong>Диплом</strong><small>Рентгенология</small></span><span class="document-open">Открыть →</span></button>
