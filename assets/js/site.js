@@ -23,8 +23,11 @@
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' })
     : null;
+  let lastRevealScrollY = window.scrollY;
+  let revealScrollFrame = 0;
 
   function prepareScrollReveals(active) {
+    lastRevealScrollY = window.scrollY;
     if (revealObserver) revealObserver.disconnect();
     document.querySelectorAll('.reveal-on-scroll').forEach((element) => {
       element.classList.remove('reveal-on-scroll', 'is-visible');
@@ -44,6 +47,24 @@
       revealObserver.observe(element);
     });
   }
+
+  // If a fast swipe skips an observed card entirely, reveal it once it has passed above the viewport.
+  window.addEventListener('scroll', () => {
+    if (revealScrollFrame) return;
+    revealScrollFrame = window.requestAnimationFrame(() => {
+      revealScrollFrame = 0;
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastRevealScrollY) {
+        document.querySelectorAll('.reveal-on-scroll:not(.is-visible)').forEach((element) => {
+          if (element.getBoundingClientRect().bottom < 0) {
+            element.classList.add('is-visible');
+            if (revealObserver) revealObserver.unobserve(element);
+          }
+        });
+      }
+      lastRevealScrollY = currentScrollY;
+    });
+  }, { passive: true });
 
   const showAllRevealsForReducedMotion = (event) => {
     if (!event.matches) return;
