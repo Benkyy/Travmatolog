@@ -108,9 +108,9 @@
       .doctor-brand { width:calc(100% - 3.25rem); min-width:0; flex:1 1 0%; gap:.5rem; }
       .doctor-brand > img { width:2.5rem; height:2.5rem; }
       .doctor-header-actions { flex:0 0 auto; }
-      .doctor-name { font-size:.9rem; }
+      #site-header .doctor-name { font-size:.9rem; }
     }
-    @media(max-width:360px) { .doctor-brand > img { width:2.25rem; height:2.25rem; } .doctor-name { font-size:.85rem; line-height:1.15; } .doctor-role { font-size:.68rem; line-height:1.2; } }
+    @media(max-width:360px) { .doctor-brand > img { width:2.25rem; height:2.25rem; } #site-header .doctor-name { font-size:.85rem; line-height:1.15; } #site-header .doctor-role { font-size:.68rem; line-height:1.2; } }
     @media(max-width:700px) { .service-card { grid-template-columns:minmax(0,1fr); gap:.5rem; } .service-card span { margin:0; } .document-card { grid-template-columns:2.5rem minmax(0,1fr); } .document-open { grid-column:2; padding-top:0; } }
     @media(max-width:360px) { .document-card { gap:.65rem; padding:.8rem; } .document-badge { width:2.25rem; height:2.25rem; } }
     @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation:none; transition:none; } }
