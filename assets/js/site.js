@@ -8,8 +8,50 @@
   const kicker = document.getElementById('page-kicker');
   const description = document.getElementById('page-description');
   const breadcrumb = document.getElementById('breadcrumb-current');
+  const mobileMenu = document.getElementById('mobile-menu');
   const routeLinks = Array.from(document.querySelectorAll('[data-route]'));
   const parentRoute = { arthrosis:'conditions', 'knee-ligament':'conditions', 'heel-pain':'conditions', 'back-pain':'conditions', 'shoulder-pain':'conditions', 'article-consultation':'articles', 'article-sports':'articles', 'article-rehab':'articles', 'managed-article':'articles' };
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const revealSelector = '.topic-card, .article-card, .service-card, .document-card, .topic-article, [data-page="doctor"] > .grid > *, [data-page="conditions"] > .rounded-2xl, [data-page="certificates"] > .rounded-2xl, [data-page="contacts"] .rounded-2xl';
+  const revealObserver = 'IntersectionObserver' in window && !reducedMotion.matches
+    ? new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' })
+    : null;
+
+  function prepareScrollReveals(active) {
+    if (revealObserver) revealObserver.disconnect();
+    document.querySelectorAll('.reveal-on-scroll').forEach((element) => {
+      element.classList.remove('reveal-on-scroll', 'is-visible');
+      element.style.removeProperty('--reveal-delay');
+    });
+    if (!active) return;
+
+    const targets = Array.from(active.querySelectorAll(revealSelector));
+    if (!revealObserver || reducedMotion.matches) {
+      targets.forEach((element) => element.classList.add('is-visible'));
+      return;
+    }
+
+    targets.forEach((element, index) => {
+      element.classList.add('reveal-on-scroll');
+      element.style.setProperty('--reveal-delay', `${(index % 4) * 45}ms`);
+      revealObserver.observe(element);
+    });
+  }
+
+  const showAllRevealsForReducedMotion = (event) => {
+    if (!event.matches) return;
+    if (revealObserver) revealObserver.disconnect();
+    document.querySelectorAll('.reveal-on-scroll').forEach((element) => element.classList.add('is-visible'));
+  };
+  if (typeof reducedMotion.addEventListener === 'function') reducedMotion.addEventListener('change', showAllRevealsForReducedMotion);
+  else if (typeof reducedMotion.addListener === 'function') reducedMotion.addListener(showAllRevealsForReducedMotion);
 
   function routeFromHash() {
     const raw = window.location.hash.replace(/^#\/?/, '').split(/[?&]/)[0] || 'doctor';
@@ -43,6 +85,7 @@
     const requestedPage = slug && managedArticle ? 'managed-article' : route;
     const active = pages.find((page) => page.dataset.page === requestedPage) || pages.find((page) => page.dataset.page === 'doctor');
     pages.forEach((page) => { page.hidden = page !== active; });
+    prepareScrollReveals(active);
 
     const activeTitle = managedArticle ? managedArticle.title : active.dataset.title;
     const activeKicker = managedArticle ? managedArticle.category + ' · статья' : active.dataset.kicker;
@@ -129,6 +172,7 @@
     if (!link) return;
     event.preventDefault();
     goTo(link.dataset.route);
+    if (link.closest('#mobile-menu') && mobileMenu) mobileMenu.open = false;
     const search = document.getElementById('site-search');
     const results = document.getElementById('search-results');
     if (search) search.value = '';
