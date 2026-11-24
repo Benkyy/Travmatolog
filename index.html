@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- ФИО подтверждено пользователем. Телефон, e-mail, часы работы и реквизиты ниже — демонстрационные значения для замены. -->
   <title>Бесчастнов Дмитрий Валерьевич — травматолог-ортопед</title>
   <meta name="description" content="Травматолог-ортопед Бесчастнов Дмитрий Валерьевич: справочные материалы о травмах, суставах, диагностике и восстановлении.">
   <meta property="og:type" content="website">
@@ -73,10 +72,11 @@
     .service-card p,.service-card span { margin-top:.3rem; color:var(--color-text-muted); font-size:.82rem; line-height:1.5; }
     .service-card a { color:var(--color-primary-600); font-size:.82rem; font-weight:800; text-decoration:none; }
     .service-card a:hover { text-decoration:underline; }
-    .document-card { display:grid; grid-template-columns:2.5rem minmax(0,1fr); align-items:center; gap:.9rem; width:100%; border:1px solid var(--color-border); border-radius:1rem; background:var(--color-bg); padding:1rem; text-align:left; }
+    .document-card { display:grid; grid-template-columns:2.5rem minmax(0,1fr) auto; align-items:center; gap:.9rem; width:100%; border:1px solid var(--color-border); border-radius:1rem; background:var(--color-bg); padding:1rem; text-align:left; transition:background-color .18s,border-color .18s; }
+    .document-card:hover { border-color:var(--color-primary); background:var(--color-surface); }
     .document-card strong { display:block; font-size:.9rem; }
     .document-card small { display:block; margin-top:.25rem; color:var(--color-text-muted); font-size:.75rem; }
-    @media(max-width:700px) { .service-card { grid-template-columns:minmax(0,1fr); gap:.5rem; } .service-card span { margin:0; } }
+    @media(max-width:700px) { .service-card { grid-template-columns:minmax(0,1fr); gap:.5rem; } .service-card span { margin:0; } .document-card { grid-template-columns:2.5rem minmax(0,1fr); } .document-open { grid-column:2; padding-top:0; } }
     @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation:none; transition:none; } }
   </style>
   <script src="assets/js/theme.js?v=site-tabs-2" defer></script>
@@ -125,7 +125,7 @@
         <span class="min-w-0"><span class="block text-lg font-extrabold leading-tight sm:text-xl">Бесчастнов Дмитрий Валерьевич</span><span class="mt-1 block text-sm text-text-muted">Травматолог-ортопед · Москва</span></span>
       </a>
       <div class="flex items-center gap-3 sm:gap-5">
-        <div class="hidden text-right sm:block"><span class="block text-[10px] font-bold uppercase tracking-widest text-text-muted">Телефон клиники</span><a href="tel:+70000000000" class="mt-1 inline-flex items-center gap-2 font-bold transition hover:text-primary-600"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 3 3 5-2 2a15 15 0 0 0 7 7l2-2 5 3-1 3C10 22 2 14 3 4Z"/></svg>+7 (000) 000-00-00</a></div><div class="hidden text-right xl:block"><span class="block text-[10px] font-bold uppercase tracking-widest text-text-muted">Адрес клиники</span><a data-route="contacts" href="#/contacts" class="mt-1 inline-flex font-semibold transition hover:text-primary-600">Москва, ул. Сормовская, 9</a></div>
+        <div class="hidden text-right sm:block"><span class="block text-[10px] font-bold uppercase tracking-widest text-text-muted">Телефон клиники</span><a href="tel:+74959191140" class="mt-1 inline-flex items-center gap-2 font-bold transition hover:text-primary-600"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 3 3 5-2 2a15 15 0 0 0 7 7l2-2 5 3-1 3C10 22 2 14 3 4Z"/></svg>+7 (495) 919-11-40</a></div><div class="hidden text-right xl:block"><span class="block text-[10px] font-bold uppercase tracking-widest text-text-muted">Адрес клиники</span><a data-route="contacts" href="#/contacts" class="mt-1 inline-flex font-semibold transition hover:text-primary-600">Москва, ул. Сормовская, 9</a></div>
         <button id="theme-toggle" type="button" aria-label="Переключить тему" aria-pressed="false" title="Переключить тему" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-border bg-bg transition hover:bg-surface">
           <svg class="h-5 w-5 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
           <svg class="hidden h-5 w-5 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.9 13A8.5 8.5 0 0 1 11 3.1 8.5 8.5 0 1 0 20.9 13Z"/></svg>
@@ -161,7 +161,7 @@
           <a data-route="shoulder-pain" href="#/shoulder-pain" class="side-link">Боль в плече</a>
           <a data-route="rehabilitation" href="#/rehabilitation" class="side-link">Восстановление</a>
         </nav>
-        <div class="mt-5 rounded-xl bg-surface p-4"><p class="text-sm font-bold">Нужна консультация?</p><p class="mt-1 text-xs leading-relaxed text-text-muted">Уточните порядок приёма в клинике по телефону.</p><a href="tel:+70000000000" class="mt-3 inline-flex w-full items-center justify-center rounded-lg bg-accent px-3 py-2.5 text-sm font-bold text-on-accent transition hover:bg-accent-hover">Позвонить</a></div>
+        <div class="mt-5 rounded-xl bg-surface p-4"><p class="text-sm font-bold">Нужна консультация?</p><p class="mt-1 text-xs leading-relaxed text-text-muted">Уточните порядок приёма в клинике по телефону.</p><a href="tel:+74959191140" class="mt-3 inline-flex w-full items-center justify-center rounded-lg bg-accent px-3 py-2.5 text-sm font-bold text-on-accent transition hover:bg-accent-hover">Позвонить</a></div>
       </div>
     </aside>
 
@@ -197,7 +197,7 @@
             <div><h2 class="text-xl font-extrabold">С какими вопросами обращаются</h2><ul class="mt-4 grid gap-3 text-sm leading-relaxed text-text-muted"><li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Боль, скованность или припухлость суставов</li><li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Травмы колена, плеча, стопы и голеностопа</li><li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Последствия переломов и ограничение подвижности</li><li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Восстановление после травмы или операции</li></ul></div>
             <div><h2 class="text-xl font-extrabold">Как строится консультация</h2><ol class="mt-4 grid gap-3 text-sm leading-relaxed text-text-muted"><li><span class="mr-2 font-extrabold text-primary-600">01</span>Обсуждаем жалобы и историю состояния.</li><li><span class="mr-2 font-extrabold text-primary-600">02</span>Проводим осмотр и оцениваем объём движений.</li><li><span class="mr-2 font-extrabold text-primary-600">03</span>Разбираем обследования и определяем дальнейшие шаги.</li></ol></div>
           </div>
-          <div class="mt-10 rounded-2xl border border-border bg-surface-2 p-5 sm:p-7"><div class="flex flex-wrap items-center justify-between gap-4"><div><p class="text-xs font-extrabold uppercase tracking-widest text-primary-600">Образование и повышение квалификации</p><h2 class="mt-2 text-xl font-extrabold">Профессиональные документы</h2><p class="mt-2 text-sm text-text-muted">В разделе перечислены образование и направления повышения квалификации.</p></div><a data-route="certificates" href="#/certificates" class="inline-flex min-h-11 items-center gap-2 rounded-lg border border-border bg-bg px-4 py-2 text-sm font-bold transition hover:bg-surface">Смотреть сертификаты →</a></div></div>
+          <div class="mt-10 rounded-2xl border border-border bg-surface-2 p-5 sm:p-7"><div class="flex flex-wrap items-center justify-between gap-4"><div><p class="text-xs font-extrabold uppercase tracking-widest text-primary-600">Образование и повышение квалификации</p><h2 class="mt-2 text-xl font-extrabold">Профессиональные документы</h2><p class="mt-2 text-sm text-text-muted">Документы можно просмотреть во встроенном окне сайта.</p></div><a data-route="certificates" href="#/certificates" class="inline-flex min-h-11 items-center gap-2 rounded-lg border border-border bg-bg px-4 py-2 text-sm font-bold transition hover:bg-surface">Смотреть сертификаты →</a></div></div>
         </section>
 
         <section id="view-conditions" data-page="conditions" data-title="Заболевания и травмы" data-kicker="Справочник пациента" data-description="Короткие объяснения симптомов и распространённых состояний в травматологии и ортопедии." aria-labelledby="page-title" hidden>
@@ -299,28 +299,29 @@
         <section id="view-services" data-page="services" data-title="Услуги и направления приёма" data-kicker="Медицинская помощь" data-description="Перечень направлений для обсуждения со специалистом; применимость зависит от клинической ситуации." aria-labelledby="page-title" hidden>
           <div class="rounded-2xl border border-border bg-surface p-5 sm:p-7"><h2 class="text-xl font-extrabold">Что можно обсудить на консультации</h2><p class="mt-2 leading-relaxed text-text-muted">Длительность и необходимость процедур определяются индивидуально. Стоимость и порядок оказания услуг уточняйте в клинике.</p></div>
           <div class="mt-5 grid gap-3">
-            <article class="service-card"><div><h2>Приём травматолога-ортопеда</h2><p>Обсуждение жалоб, осмотр, оценка движений и дальнейших шагов.</p></div><span>30–45 минут</span><a href="tel:+70000000000">Уточнить по телефону</a></article>
-            <article class="service-card"><div><h2>Повторная консультация</h2><p>Обсуждение динамики и уже выполненных обследований.</p></div><span>Ориентировочно 30 минут</span><a href="tel:+70000000000">Уточнить по телефону</a></article>
-            <article class="service-card"><div><h2>УЗИ суставов</h2><p>Исследование мягких тканей и структур сустава по показаниям.</p></div><span>По расписанию клиники</span><a href="tel:+70000000000">Уточнить по телефону</a></article>
-            <article class="service-card"><div><h2>Лечебная блокада</h2><p>Обсуждение показаний, возможных рисков и альтернатив.</p></div><span>По плану приёма</span><a href="tel:+70000000000">Уточнить по телефону</a></article>
-            <article class="service-card"><div><h2>Тейпирование и ортезирование</h2><p>Поддержка и подбор средств с учётом задачи и рекомендаций.</p></div><span>Индивидуально</span><a href="tel:+70000000000">Уточнить по телефону</a></article>
-            <article class="service-card"><div><h2>Обсуждение артроскопии</h2><p>Оценка показаний и вариантов лечения после диагностики.</p></div><span>По показаниям</span><a href="tel:+70000000000">Уточнить по телефону</a></article>
+            <article class="service-card"><div><h2>Приём травматолога-ортопеда</h2><p>Обсуждение жалоб, осмотр, оценка движений и дальнейших шагов.</p></div><span>30–45 минут</span><a href="tel:+74959191140">Уточнить по телефону</a></article>
+            <article class="service-card"><div><h2>Повторная консультация</h2><p>Обсуждение динамики и уже выполненных обследований.</p></div><span>Ориентировочно 30 минут</span><a href="tel:+74959191140">Уточнить по телефону</a></article>
+            <article class="service-card"><div><h2>УЗИ суставов</h2><p>Исследование мягких тканей и структур сустава по показаниям.</p></div><span>По расписанию клиники</span><a href="tel:+74959191140">Уточнить по телефону</a></article>
+            <article class="service-card"><div><h2>Лечебная блокада</h2><p>Обсуждение показаний, возможных рисков и альтернатив.</p></div><span>По плану приёма</span><a href="tel:+74959191140">Уточнить по телефону</a></article>
+            <article class="service-card"><div><h2>Тейпирование и ортезирование</h2><p>Поддержка и подбор средств с учётом задачи и рекомендаций.</p></div><span>Индивидуально</span><a href="tel:+74959191140">Уточнить по телефону</a></article>
+            <article class="service-card"><div><h2>Обсуждение артроскопии</h2><p>Оценка показаний и вариантов лечения после диагностики.</p></div><span>По показаниям</span><a href="tel:+74959191140">Уточнить по телефону</a></article>
             <article class="service-card"><div><h2>Реабилитационный план</h2><p>Обсуждение восстановления после травмы или операции.</p></div><span>По состоянию</span><a data-route="rehabilitation" href="#/rehabilitation">Подробнее</a></article>
           </div>
           <p class="mt-5 text-xs leading-relaxed text-text-muted">Перечень не является обещанием оказания конкретной услуги. Решение принимается после оценки показаний.</p>
         </section>
-        <section id="view-certificates" data-page="certificates" data-title="Образование и сертификаты" data-kicker="Профессиональные документы" data-description="Образование и направления повышения квалификации врача." aria-labelledby="page-title" hidden>
-          <div class="rounded-2xl border border-border bg-surface p-5 sm:p-7"><h2 class="text-xl font-extrabold">Образование и повышение квалификации</h2><p class="mt-2 leading-relaxed text-text-muted">Список образования и направлений повышения квалификации. Копии документов не размещены на сайте.</p></div>
+        <section id="view-certificates" data-page="certificates" data-title="Образование и сертификаты" data-kicker="Профессиональные документы" data-description="Документы открываются во встроенном окне сайта как изображения страниц." aria-labelledby="page-title" hidden>
+          <div class="rounded-2xl border border-border bg-surface p-5 sm:p-7"><h2 class="text-xl font-extrabold">Образование и повышение квалификации</h2><p class="mt-2 leading-relaxed text-text-muted">Нажмите на документ, чтобы просмотреть его страницы во встроенном окне.</p></div>
           <div class="mt-5 grid gap-3 sm:grid-cols-2">
-            <div class="document-card"><span class="document-badge" aria-hidden="true">01</span><span><strong>Баллы</strong><small>Повышение квалификации · документ 1</small></span></div>
-            <div class="document-card"><span class="document-badge" aria-hidden="true">02</span><span><strong>Баллы</strong><small>Повышение квалификации · документ 2</small></span></div>
-            <div class="document-card"><span class="document-badge" aria-hidden="true">03</span><span><strong>Баллы</strong><small>Повышение квалификации · документ 3</small></span></div>
-            <div class="document-card"><span class="document-badge" aria-hidden="true">04</span><span><strong>Диплом</strong><small>Лечебное дело</small></span></div>
-            <div class="document-card"><span class="document-badge" aria-hidden="true">05</span><span><strong>Диплом</strong><small>Организация здравоохранения</small></span></div>
-            <div class="document-card"><span class="document-badge" aria-hidden="true">06</span><span><strong>Диплом</strong><small>Рентгенология</small></span></div>
-            <div class="document-card"><span class="document-badge" aria-hidden="true">07</span><span><strong>Ординатура</strong><small>Профессиональная подготовка</small></span></div>
-            <div class="document-card"><span class="document-badge" aria-hidden="true">08</span><span><strong>Свидетельство</strong><small>Гериатрия</small></span></div>
-            <div class="document-card"><span class="document-badge" aria-hidden="true">09</span><span><strong>Удостоверение</strong><small>Травматология и ортопедия</small></span></div>
+            <button type="button" data-document-pages="assets/docs/previews/education-points-1-1.webp" data-document-title="Баллы — документ 1" class="document-card"><span class="document-badge">01</span><span><strong>Баллы</strong><small>Документ 1 · повышение квалификации</small></span><span class="document-open">Открыть →</span></button>
+            <button type="button" data-document-pages="assets/docs/previews/education-points-2-1.webp" data-document-title="Баллы — документ 2" class="document-card"><span class="document-badge">02</span><span><strong>Баллы</strong><small>Документ 2 · повышение квалификации</small></span><span class="document-open">Открыть →</span></button>
+            <button type="button" data-document-pages="assets/docs/previews/education-points-3-1.webp" data-document-title="Баллы — документ 3" class="document-card"><span class="document-badge">03</span><span><strong>Баллы</strong><small>Документ 3 · повышение квалификации</small></span><span class="document-open">Открыть →</span></button>
+            <button type="button" data-document-pages="assets/docs/previews/diploma-lechebnoe-delo-1.webp" data-document-title="Диплом · Лечебное дело" class="document-card"><span class="document-badge">04</span><span><strong>Диплом</strong><small>Лечебное дело</small></span><span class="document-open">Открыть →</span></button>
+            <button type="button" data-document-pages="assets/docs/previews/diploma-organizaciya-1.webp" data-document-title="Диплом · Организация" class="document-card"><span class="document-badge">05</span><span><strong>Диплом</strong><small>Организация здравоохранения</small></span><span class="document-open">Открыть →</span></button>
+            <button type="button" data-document-pages="assets/docs/previews/diploma-rentgenologiya-1.webp" data-document-title="Диплом · Рентгенология" class="document-card"><span class="document-badge">06</span><span><strong>Диплом</strong><small>Рентгенология</small></span><span class="document-open">Открыть →</span></button>
+            <button type="button" data-document-pages="assets/docs/previews/ordinatura-1.webp" data-document-title="Ординатура" class="document-card"><span class="document-badge">07</span><span><strong>Ординатура</strong><small>Профессиональная подготовка</small></span><span class="document-open">Открыть →</span></button>
+            <button type="button" data-document-pages="assets/docs/previews/certificate-geriatriya-1.webp" data-document-title="Свидетельство · Гериатрия" class="document-card"><span class="document-badge">08</span><span><strong>Свидетельство</strong><small>Гериатрия</small></span><span class="document-open">Открыть →</span></button>
+            <button type="button" data-document-pages="assets/docs/previews/udostoverenie-travmatologiya-1.webp" data-document-title="Удостоверение · Травматология" class="document-card"><span class="document-badge">09</span><span><strong>Удостоверение</strong><small>Травматология и ортопедия</small></span><span class="document-open">Открыть →</span></button>
+            <button type="button" data-document-pages="assets/docs/previews/advanced-training-1.jpg|assets/docs/previews/advanced-training-2.jpg|assets/docs/previews/advanced-training-3.jpg|assets/docs/previews/advanced-training-4.jpg" data-document-title="Удостоверения о повышении квалификации" class="document-card"><span class="document-badge">10</span><span><strong>Повышение квалификации</strong><small>4 удостоверения · 2024–2026</small></span><span class="document-open">Открыть →</span></button>
           </div>
         </section>
 
@@ -357,12 +358,8 @@
           <a data-route="articles" href="#/articles" class="inline-action">← Все статьи</a>
         </section>
 
-        <section id="view-partners" data-page="partners" data-title="Партнёры" data-kicker="Профессиональное взаимодействие" data-description="Раздел для информации о медицинских организациях и специалистах-партнёрах." aria-labelledby="page-title" hidden>
-          <div class="rounded-2xl border border-border bg-surface p-5 sm:p-7"><h2 class="text-xl font-extrabold">Партнёры по направлениям помощи</h2><p class="mt-2 leading-relaxed text-text-muted">Список будет дополнен после согласования названий организаций и формата взаимодействия.</p></div>
-          <div class="mt-5 grid gap-4 sm:grid-cols-2">
-            <article class="rounded-2xl border border-border bg-bg p-5"><p class="text-xs font-extrabold uppercase tracking-widest text-primary-600">Партнёр</p><h2 class="mt-3 text-lg font-extrabold">Название медицинской организации</h2><p class="mt-2 text-sm leading-relaxed text-text-muted">Диагностика и обследование опорно-двигательного аппарата.</p></article>
-            <article class="rounded-2xl border border-border bg-bg p-5"><p class="text-xs font-extrabold uppercase tracking-widest text-primary-600">Партнёр</p><h2 class="mt-3 text-lg font-extrabold">Название центра реабилитации</h2><p class="mt-2 text-sm leading-relaxed text-text-muted">Восстановление функции по согласованному плану специалиста.</p></article>
-          </div>
+        <section id="view-partners" data-page="partners" data-title="Партнёры" data-kicker="Медицинская организация" data-description="Место приёма врача и официальный сайт клиники." aria-labelledby="page-title" hidden>
+          <article class="topic-article"><p class="text-xs font-extrabold uppercase tracking-widest text-primary-600">Место приёма</p><h2 class="mt-3 text-xl font-extrabold">ГБУЗ «Диагностический центр №3 ДЗМ»</h2><p class="mt-3 text-sm leading-relaxed text-text-muted">Москва, ул. Сормовская, д. 9</p><a href="https://dc3.mos.ru/" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex text-sm font-bold text-primary-600 hover:underline">Официальный сайт центра ↗</a></article>
         </section>
 
         <section id="view-contacts" data-page="contacts" data-title="Контакты и как добраться" data-kicker="Контактная информация" data-description="Позвоните в клинику, чтобы уточнить расписание, адрес приёма и необходимые документы." aria-labelledby="page-title" hidden>
@@ -370,12 +367,11 @@
             <div class="rounded-2xl border border-border bg-surface p-5 sm:p-7">
               <h2 class="text-xl font-extrabold">ГБУЗ «Диагностический центр №3 ДЗМ»</h2>
               <address class="mt-5 grid gap-4 not-italic">
-                <a href="tel:+70000000000" class="flex items-center gap-3 text-lg font-extrabold hover:text-primary-600"><svg class="h-5 w-5 text-primary-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 3 3 5-2 2a15 15 0 0 0 7 7l2-2 5 3-1 3C10 22 2 14 3 4Z"/></svg>+7 (000) 000-00-00</a>
-                <a href="mailto:doctor@example.com" class="flex items-center gap-3 text-sm font-semibold text-text-muted hover:text-primary-600"><svg class="h-5 w-5 text-primary-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3 6 9 7 9-7"/></svg>doctor@example.com</a>
+                <a href="tel:+74959191140" class="flex items-center gap-3 text-lg font-extrabold hover:text-primary-600"><svg class="h-5 w-5 text-primary-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 3 3 5-2 2a15 15 0 0 0 7 7l2-2 5 3-1 3C10 22 2 14 3 4Z"/></svg>+7 (495) 919-11-40</a>
+                <a href="mailto:travmatolog@dc-3.ru" class="flex items-center gap-3 text-sm font-semibold text-text-muted hover:text-primary-600"><svg class="h-5 w-5 text-primary-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3 6 9 7 9-7"/></svg>travmatolog@dc-3.ru</a>
                 <p class="flex items-start gap-3 text-sm leading-relaxed text-text-muted"><svg class="h-5 w-5 shrink-0 text-primary-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2"/></svg><span>Москва, ул. Сормовская, 9</span></p>
               </address>
-              <div class="mt-7 border-t border-border pt-5"><h3 class="font-extrabold">Часы приёма</h3><p class="mt-2 text-sm leading-7 text-text-muted">Пн–Пт: 09:00–20:00<br>Сб: 10:00–16:00<br>Вс: выходной</p></div>
-              <p class="mt-5 text-xs leading-relaxed text-text-muted">Телефон, электронная почта и часы работы — демонстрационные значения. Уточните их у клиники перед публикацией.</p>
+              <div class="mt-7 border-t border-border pt-5"><h3 class="font-extrabold">Режим работы центра</h3><p class="mt-2 text-sm leading-7 text-text-muted">Пн–Пт: 08:00–20:00<br>Сб: 09:00–18:00<br>Вс: 09:00–16:00</p></div>
             </div>
             <div>
               <div class="overflow-hidden rounded-2xl border border-border bg-surface-2"><iframe title="Яндекс Карты: ГБУЗ «Диагностический центр №3 ДЗМ», Москва, улица Сормовская, 9" src="https://api-maps.yandex.ru/frame/v1/-/CXQ-NQ-D?" class="block h-72 w-full border-0 sm:h-96" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
@@ -388,7 +384,7 @@
 
     <aside aria-label="Информация для пациентов" class="order-3 hidden xl:block">
       <div class="sticky top-56 grid gap-4">
-        <div class="rounded-2xl border border-border bg-surface p-5"><p class="text-xs font-extrabold uppercase tracking-widest text-primary-600">Запись по телефону</p><h2 class="mt-2 text-lg font-extrabold">Уточните время приёма</h2><p class="mt-2 text-sm leading-relaxed text-text-muted">Администратор клиники подскажет расписание и порядок подготовки.</p><a href="tel:+70000000000" class="mt-4 inline-flex w-full items-center justify-center rounded-xl bg-accent px-4 py-3 text-sm font-extrabold text-on-accent transition hover:bg-accent-hover">Позвонить в клинику</a></div>
+        <div class="rounded-2xl border border-border bg-surface p-5"><p class="text-xs font-extrabold uppercase tracking-widest text-primary-600">Запись по телефону</p><h2 class="mt-2 text-lg font-extrabold">Уточните время приёма</h2><p class="mt-2 text-sm leading-relaxed text-text-muted">Администратор клиники подскажет расписание и порядок подготовки.</p><a href="tel:+74959191140" class="mt-4 inline-flex w-full items-center justify-center rounded-xl bg-accent px-4 py-3 text-sm font-extrabold text-on-accent transition hover:bg-accent-hover">Позвонить в клинику</a></div>
         <div class="rounded-2xl border border-border bg-bg p-5"><p class="text-xs font-extrabold uppercase tracking-widest text-text-muted">Адрес</p><p class="mt-2 font-bold">ГБУЗ «Диагностический центр №3 ДЗМ»</p><p class="mt-1 text-sm text-text-muted">Москва, ул. Сормовская, 9</p><a data-route="contacts" href="#/contacts" class="mt-3 inline-flex text-sm font-bold text-primary-600 hover:underline">Как добраться →</a></div>
         <div class="rounded-2xl border border-border bg-surface-2 p-5"><p class="text-xs font-extrabold uppercase tracking-widest text-primary-600">Важно</p><p class="mt-2 text-sm leading-relaxed text-text-muted">Сайт не заменяет осмотр. При тяжёлой травме обратитесь за неотложной медицинской помощью.</p></div>
       </div>
@@ -397,12 +393,18 @@
 
   <!-- ===== ПОДВАЛ ===== -->
   <footer class="border-t border-border bg-surface">
-    <!-- ВЫДУМАННЫЕ ДАННЫЕ: телефон, e-mail, график, ИНН и ОГРН демонстрационные; замените официальными данными организации. -->
     <div class="mx-auto grid max-w-7xl gap-7 px-4 py-8 text-sm sm:px-6 md:grid-cols-2 lg:px-8">
       <div><p class="font-extrabold">Бесчастнов Дмитрий Валерьевич</p><p class="mt-1 text-text-muted">Травматолог-ортопед</p><p class="mt-3 text-text-muted">ГБУЗ «Диагностический центр №3 ДЗМ» · Москва, ул. Сормовская, 9</p></div>
-      <div class="md:text-right"><p><a href="tel:+70000000000" class="font-bold hover:text-primary-600">+7 (000) 000-00-00</a> · <a href="mailto:doctor@example.com" class="text-text-muted hover:text-primary-600">doctor@example.com</a></p><p class="mt-2 text-xs leading-relaxed text-text-muted">ИНН 0000000000 · ОГРН 0000000000000 · Демонстрационные реквизиты</p><p class="mt-2 text-xs leading-relaxed text-text-muted">© <span id="year">2026</span> Информация на сайте не является публичной офертой и не заменяет консультацию врача.</p></div>
+      <div class="md:text-right"><p><a href="tel:+74959191140" class="font-bold hover:text-primary-600">+7 (495) 919-11-40</a> · <a href="mailto:travmatolog@dc-3.ru" class="text-text-muted hover:text-primary-600">travmatolog@dc-3.ru</a></p><p class="mt-2 text-xs leading-relaxed text-text-muted">ИНН 7721033735 · ОГРН 1027739269910</p><p class="mt-2 text-xs leading-relaxed text-text-muted">© <span id="year">2026</span> Информация на сайте не является публичной офертой и не заменяет консультацию врача.</p></div>
     </div>
   </footer>
 
+  <!-- Просмотр локальных изображений страниц документов; оригинальные PDF не связаны с открытием в новой вкладке и скачиванием. -->
+  <dialog id="document-modal" aria-labelledby="document-modal-title" aria-describedby="document-modal-help" class="fixed inset-0 m-0 h-full max-h-full w-full max-w-full bg-bg p-4 text-text backdrop:bg-overlay sm:inset-6 sm:m-auto sm:h-[calc(100dvh_-_3rem)] sm:max-h-[900px] sm:w-[calc(100vw_-_3rem)] sm:max-w-5xl sm:rounded-3xl sm:p-6">
+    <div class="flex h-full min-h-0 flex-col gap-4">
+      <div class="flex shrink-0 items-start justify-between gap-4"><div><p class="text-xs font-extrabold uppercase tracking-widest text-primary-600">Образование и повышение квалификации</p><h2 id="document-modal-title" class="mt-2 text-xl font-extrabold sm:text-2xl">Документ</h2><p id="document-modal-help" class="mt-1 text-sm text-text-muted">Просмотр изображения страниц</p></div><button type="button" data-modal-close aria-label="Закрыть просмотр документа" title="Закрыть" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-border bg-surface text-lg transition hover:bg-surface-2">×</button></div>
+      <div id="document-viewer" role="region" aria-label="Страницы документа" tabindex="0" class="min-h-0 w-full flex-1 overflow-auto overscroll-contain rounded-xl border border-border bg-surface-2 p-2 sm:p-4"></div>
+    </div>
+  </dialog>
 </body>
 </html>
